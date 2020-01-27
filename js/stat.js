@@ -79,6 +79,10 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function getRandomColor() {
+  return BAR_OTHER_COLOR.replace('${X}', random(0, 100));
+}
+
 function renderBars(ctx, names, times) {
   var maxTime = getMaxTime(times);
 
@@ -87,12 +91,10 @@ function renderBars(ctx, names, times) {
     var startXDiff = i * (BAR_WIDTH + BAR_GAP_WIDTH);
     var currentBarHeight = calculateBarHeight(maxTime, times[i]);
 
-    var color = BAR_OTHER_COLOR;
-    if (name === 'Вы') {
-      color = BAR_PLAYER_COLOR;
-    } else {
+    var color = BAR_PLAYER_COLOR;
+    if (name !== 'Вы') {
       // example took here https://css-tricks.com/hsl-hsla-is-great-for-programmatic-color-control/
-      color = color.replace('${X}', random(0, 100));
+      color = getRandomColor();
     }
 
     var currentBarRectangle = {
@@ -105,7 +107,7 @@ function renderBars(ctx, names, times) {
 
     // visual start of bar = window start position + total window height - firstBardBordersDiff, where firstBardBordersDiff approx diff between bar visual begin and window buttom
     renderRectangle(ctx, currentBarRectangle);
-    renderMessage(ctx, name, { x: currentBarRectangle.x, y: BAR_CAPTION_POSITION_Y });
+    renderMessage(ctx, name, {x: currentBarRectangle.x, y: BAR_CAPTION_POSITION_Y});
   }
 }
 
