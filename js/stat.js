@@ -6,6 +6,8 @@ var WINDOW_POSITION_Y = 10;
 var WINDOW_SHADOW_POSITION_INDENT = 10;
 var WINDOW_HEIGHT = 270;
 var WINDOW_WIDTH = 420;
+var WINDOW_SHADOW_COLOR = 'rgba(0, 0, 0, 0.7)';
+var WINDOW_WHITE_COLOR = 'white';
 
 // Window Text Constants
 var TEXT_FONT_FAMILY = '16px PT Mono';
@@ -31,7 +33,7 @@ function getWindowRectangle() {
     y: WINDOW_POSITION_Y,
     height: WINDOW_HEIGHT,
     width: WINDOW_WIDTH,
-    color: 'white'
+    color: WINDOW_WHITE_COLOR
   };
 }
 
@@ -39,7 +41,7 @@ function getWindowShadowRectangle() {
   var windowPosition = getWindowRectangle();
   windowPosition.x += WINDOW_SHADOW_POSITION_INDENT;
   windowPosition.y += WINDOW_SHADOW_POSITION_INDENT;
-  windowPosition.color = 'rgba(0, 0, 0, 0.7)';
+  windowPosition.color = WINDOW_SHADOW_COLOR;
   return windowPosition;
 }
 
@@ -57,7 +59,6 @@ function renderRectangle(ctx, rectangle) {
 }
 
 function renderMessage(ctx, message, position) {
-
   ctx.fillStyle = TEXT_FONT_COLOR;
   ctx.font = TEXT_FONT_FAMILY;
   message.split('\n').forEach(function (line, i) {
