@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Ничипорович](https://up.htmlacademy.ru/javascript/19/user/489241).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Казаков](https://htmlacademy.ru/profile/id343981).
 
 ---
 
