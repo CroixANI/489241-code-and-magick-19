@@ -46,8 +46,7 @@ function renderWizards() {
   var similarListElement = document.querySelector('.setup-similar-list');
   var wizardTemplate = document
     .querySelector('#similar-wizard-template')
-    .content
-    .querySelector('.setup-similar-item');
+    .content;
 
   var wizards = generateWizards();
   var fragment = document.createDocumentFragment();
