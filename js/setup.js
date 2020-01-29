@@ -16,7 +16,7 @@ function getRandomArrayItem(array) {
 }
 
 function getRandomWizardName() {
-  return getRandomArrayItem(NAMES) + " " + getRandomArrayItem(SURNAMES);
+  return getRandomArrayItem(NAMES) + ' ' + getRandomArrayItem(SURNAMES);
 }
 
 function generateWizards() {
