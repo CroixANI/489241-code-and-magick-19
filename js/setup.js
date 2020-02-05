@@ -90,7 +90,7 @@ function renderWizards() {
   similarListElement.appendChild(fragment);
 }
 
-function onAvatarClick() {
+function showSetupDialog() {
   setupDialogElement.classList.remove(SETUP_DIALOG_HIDDEN_CLASS);
   document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove(WIZARD_SIMILAR_REGION_HIDDEN_CLASS);
   addCloseSetupDialogEventListeners();
@@ -115,9 +115,13 @@ function onPopupCloseEnterPress(evt) {
   }
 }
 
+function onAvatarClick() {
+  showSetupDialog();
+}
+
 function onAvatarEnterPress(evt) {
   if (evt.key === ENTER_KEY) {
-    onAvatarClick();
+    showSetupDialog();
   }
 }
 
