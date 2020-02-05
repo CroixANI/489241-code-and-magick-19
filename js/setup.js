@@ -10,11 +10,13 @@ var WIZARDS_COUNT = 4;
 
 // Html Elements Selectors
 var SETUP_DIALOG_SELECTOR = '.setup';
+var SETUP_DIALOG_HIDDEN_CLASS = 'hidden';
 var SETUP_OPEN_ELEMENT_SELECTOR = '.setup-open';
 var SETUP_OPEN_ICON_ELEMENT_SELECTOR = '.setup-open-icon';
 var SETUP_CLOSE_ELEMENT_SELECTOR = '.setup-close';
 var PROFILE_NAME_ELEMENT_SELECTOR = '.setup-user-name';
 var WIZARD_SIMILAR_REGION_SELECTOR = '.setup-similar';
+var WIZARD_SIMILAR_REGION_HIDDEN_CLASS = 'hidden';
 var WIZARD_SIMILAR_ELEMENT_SELECTOR = '.setup-similar-list';
 var WIZARD_TEMPLATE_ELEMENT_SELECTOR = '#similar-wizard-template';
 var WIZARD_NAME_ELEMENT_SELECTOR = '.setup-similar-label';
@@ -88,32 +90,34 @@ function renderWizards() {
   similarListElement.appendChild(fragment);
 }
 
-function showSetupDialog() {
-  setupDialogElement.classList.remove('hidden');
-  document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove('hidden');
+function onAvatarClick() {
+  setupDialogElement.classList.remove(SETUP_DIALOG_HIDDEN_CLASS);
+  document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove(WIZARD_SIMILAR_REGION_HIDDEN_CLASS);
   addCloseSetupDialogEventListeners();
+  addChangeColorEventListeners();
 }
 
-function closeSetupDialog() {
-  setupDialogElement.classList.add('hidden');
+function onPopupCloseClick() {
+  setupDialogElement.classList.add(SETUP_DIALOG_HIDDEN_CLASS);
   removeCloseSetupDialogEventListeners();
+  removeChangeColorEventListeners();
 }
 
 function onPopupEscapePress(evt) {
   if (evt.key === ESC_KEY && evt.target.matches(PROFILE_NAME_ELEMENT_SELECTOR) === false) {
-    closeSetupDialog();
+    onPopupCloseClick();
   }
 }
 
 function onPopupCloseEnterPress(evt) {
   if (evt.key === ENTER_KEY) {
-    closeSetupDialog();
+    onPopupCloseClick();
   }
 }
 
 function onAvatarEnterPress(evt) {
   if (evt.key === ENTER_KEY) {
-    showSetupDialog();
+    onAvatarClick();
   }
 }
 
@@ -140,31 +144,32 @@ function onWizardFireballClick(evt) {
 }
 
 function addChangeColorEventListeners() {
-  document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR)
-    .addEventListener('click', function (evt) {
-      onWizardCoatClick(evt);
-      onWizardEyesClick(evt);
-    });
-  document.querySelector(WIZARD_FIREBALL_COLOR_ELEMENT_SELECTOR)
-    .addEventListener('click', onWizardFireballClick);
+  document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).addEventListener('click', onWizardCoatClick);
+  document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).addEventListener('click', onWizardEyesClick);
+  document.querySelector(WIZARD_FIREBALL_COLOR_ELEMENT_SELECTOR).addEventListener('click', onWizardFireballClick);
+}
+
+function removeChangeColorEventListeners() {
+  document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).removeEventListener('click', onWizardCoatClick);
+  document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).removeEventListener('click', onWizardEyesClick);
+  document.querySelector(WIZARD_FIREBALL_COLOR_ELEMENT_SELECTOR).removeEventListener('click', onWizardFireballClick);
 }
 
 function addOpenSetupDialogEventListeners() {
-  var openElement = document.querySelector(SETUP_OPEN_ELEMENT_SELECTOR);
-  openElement.addEventListener('click', showSetupDialog);
-  openElement.querySelector(SETUP_OPEN_ICON_ELEMENT_SELECTOR)
+  var avatarElement = document.querySelector(SETUP_OPEN_ELEMENT_SELECTOR);
+  avatarElement.addEventListener('click', onAvatarClick);
+  avatarElement.querySelector(SETUP_OPEN_ICON_ELEMENT_SELECTOR)
     .addEventListener('keydown', onAvatarEnterPress);
-  addChangeColorEventListeners();
 }
 
 function addCloseSetupDialogEventListeners() {
-  setupDialogCloseElement.addEventListener('click', closeSetupDialog);
+  setupDialogCloseElement.addEventListener('click', onPopupCloseClick);
   setupDialogCloseElement.addEventListener('keydown', onPopupCloseEnterPress);
   document.addEventListener('keydown', onPopupEscapePress);
 }
 
 function removeCloseSetupDialogEventListeners() {
-  setupDialogCloseElement.removeEventListener('click', closeSetupDialog);
+  setupDialogCloseElement.removeEventListener('click', onPopupCloseClick);
   setupDialogCloseElement.removeEventListener('keydown', onPopupCloseEnterPress);
   document.removeEventListener('keydown', onPopupEscapePress);
 }
