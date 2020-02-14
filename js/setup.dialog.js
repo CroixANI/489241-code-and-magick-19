@@ -103,8 +103,7 @@
     document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove(WIZARD_SIMILAR_REGION_HIDDEN_CLASS);
     addCloseSetupDialogEventListeners();
     addChangeColorEventListeners();
-    setupDialogElement.style.top = SETUP_INITIAL_Y;
-    setupDialogElement.style.left = SETUP_INITIAL_X;
+    setupDialogElement.style = '';
     setupDialogElement.classList.remove(SETUP_DIALOG_HIDDEN_CLASS);
     window.draggable.makeDraggable(setupDialogElement.querySelector(SETUP_UPLOAD_ELEMENT_SELECTOR), setupDialogElement);
   }
