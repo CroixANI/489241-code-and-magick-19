@@ -9,7 +9,7 @@
   var WIZARDS_COUNT = 4;
 
   function getRandomWizardName() {
-    return window.Utils.getRandomArrayItem(NAMES) + ' ' + window.Utils.getRandomArrayItem(SURNAMES);
+    return window.utils.getRandomArrayItem(NAMES) + ' ' + window.utils.getRandomArrayItem(SURNAMES);
   }
 
   function generateWizards() {
@@ -18,8 +18,8 @@
     for (var i = 0; i < WIZARDS_COUNT; i++) {
       var wizard = {
         name: getRandomWizardName(),
-        coatColor: window.Utils.getRandomArrayItem(COAT_COLORS),
-        eyesColor: window.Utils.getRandomArrayItem(EYES_COLORS)
+        coatColor: window.utils.getRandomArrayItem(COAT_COLORS),
+        eyesColor: window.utils.getRandomArrayItem(EYES_COLORS)
       };
       wizards.push(wizard);
     }
@@ -27,7 +27,7 @@
     return wizards;
   }
 
-  window.Data = window.Data || {};
-  window.Data.Mocks = window.Data.Mocks || {};
-  window.Data.Mocks.generateWizards = generateWizards;
+  window.data = window.data || {};
+  window.data.mocks = window.data.mocks || {};
+  window.data.mocks.generateWizards = generateWizards;
 })();

@@ -16,8 +16,8 @@
     }
   }
 
-  window.Utils = window.Utils || {};
-  window.Utils.Events = window.Utils.Events || {};
-  window.Utils.Events.isEscapeEvent = isEscapeEvent;
-  window.Utils.Events.isEnterEvent = isEnterEvent;
+  window.utils = window.utils || {};
+  window.utils.events = window.utils.events || {};
+  window.utils.events.isEscapeEvent = isEscapeEvent;
+  window.utils.events.isEnterEvent = isEnterEvent;
 })();

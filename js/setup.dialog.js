@@ -7,6 +7,8 @@
   var FIREBALLS_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
   // selectors for dialog
+  var SETUP_INITIAL_X = '50%';
+  var SETUP_INITIAL_Y = '80px';
   var SETUP_DIALOG_SELECTOR = '.setup';
   var SETUP_DIALOG_HIDDEN_CLASS = 'hidden';
   var SETUP_CLOSE_ELEMENT_SELECTOR = '.setup-close';
@@ -45,30 +47,30 @@
 
   function onPopupEscapePress(evt) {
     if (evt.target.matches(PROFILE_NAME_ELEMENT_SELECTOR) === false) {
-      window.Utils.Events.isEscapeEvent(evt, onPopupCloseClick);
+      window.utils.events.isEscapeEvent(evt, onPopupCloseClick);
     }
   }
 
   function onPopupCloseEnterPress(evt) {
-    window.Utils.Events.isEnterEvent(evt, onPopupCloseClick);
+    window.utils.events.isEnterEvent(evt, onPopupCloseClick);
   }
 
   function onWizardCoatClick(evt) {
     if (evt.target.matches(WIZARD_COAT_COLOR_ELEMENT_SELECTOR)) {
-      var color = window.Utils.colorize(evt.target, COAT_COLORS);
+      var color = window.utils.colorize(evt.target, COAT_COLORS);
       wizardCoatInputElement.value = color;
     }
   }
 
   function onWizardEyesClick(evt) {
     if (evt.target.matches(WIZARD_EYES_COLOR_ELEMENT_SELECTOR)) {
-      var color = window.Utils.colorize(evt.target, EYES_COLORS);
+      var color = window.utils.colorize(evt.target, EYES_COLORS);
       wizardEyesInputElement.value = color;
     }
   }
 
   function onWizardFireballClick(evt) {
-    var color = window.Utils.colorize(evt.target, FIREBALLS_COLORS);
+    var color = window.utils.colorize(evt.target, FIREBALLS_COLORS);
     wizardFireballInputElement.value = color;
   }
 
@@ -97,17 +99,19 @@
   }
 
   function showSetupDialog() {
-    window.Setup.Dialog.Wizards.renderWizards(similarListElement);
+    window.setup.dialog.wizards.renderWizards(similarListElement);
     document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove(WIZARD_SIMILAR_REGION_HIDDEN_CLASS);
     addCloseSetupDialogEventListeners();
     addChangeColorEventListeners();
+    setupDialogElement.style.top = SETUP_INITIAL_Y;
+    setupDialogElement.style.left = SETUP_INITIAL_X;
     setupDialogElement.classList.remove(SETUP_DIALOG_HIDDEN_CLASS);
-    window.Draggable.makeDraggable(setupDialogElement.querySelector(SETUP_UPLOAD_ELEMENT_SELECTOR), setupDialogElement);
+    window.draggable.makeDraggable(setupDialogElement.querySelector(SETUP_UPLOAD_ELEMENT_SELECTOR), setupDialogElement);
   }
 
-  window.Setup = window.Setup || {};
-  window.Setup.Dialog = window.Setup.Dialog || {};
-  window.Setup.Dialog.showSetupDialog = showSetupDialog;
+  window.setup = window.setup || {};
+  window.setup.dialog = window.setup.dialog || {};
+  window.setup.dialog.showSetupDialog = showSetupDialog;
 })();
 
 

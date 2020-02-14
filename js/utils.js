@@ -20,8 +20,8 @@
     return color;
   }
 
-  window.Utils = window.Utils || {};
-  window.Utils.random = random;
-  window.Utils.getRandomArrayItem = getRandomArrayItem;
-  window.Utils.colorize = colorize;
+  window.utils = window.utils || {};
+  window.utils.random = random;
+  window.utils.getRandomArrayItem = getRandomArrayItem;
+  window.utils.colorize = colorize;
 })();

@@ -109,7 +109,7 @@
 
       // visual start of bar = window start position + total window height - firstBardBordersDiff, where firstBardBordersDiff approx diff between bar visual begin and window buttom
       renderRectangle(ctx, currentBarRectangle);
-      renderMessage(ctx, name, { x: currentBarRectangle.x, y: BAR_CAPTION_POSITION_Y });
+      renderMessage(ctx, name, {x: currentBarRectangle.x, y: BAR_CAPTION_POSITION_Y});
     }
   }
 

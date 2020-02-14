@@ -20,7 +20,7 @@
       .querySelector(WIZARD_TEMPLATE_ELEMENT_SELECTOR)
       .content;
 
-    var wizards = window.Data.Mocks.generateWizards();
+    var wizards = window.data.mocks.generateWizards();
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < wizards.length; i++) {
       fragment.appendChild(renderWizard(wizardTemplate, wizards[i]));
@@ -30,8 +30,8 @@
     containerElement.appendChild(fragment);
   }
 
-  window.Setup = window.Setup || {};
-  window.Setup.Dialog = window.Setup.Dialog || {};
-  window.Setup.Dialog.Wizards = window.Setup.Dialog.Wizards || {};
-  window.Setup.Dialog.Wizards.renderWizards = renderWizards;
+  window.setup = window.setup || {};
+  window.setup.dialog = window.setup.dialog || {};
+  window.setup.dialog.wizards = window.setup.dialog.wizards || {};
+  window.setup.dialog.wizards.renderWizards = renderWizards;
 })();
