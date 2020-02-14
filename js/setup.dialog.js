@@ -7,8 +7,6 @@
   var FIREBALLS_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
   // selectors for dialog
-  var SETUP_INITIAL_X = '50%';
-  var SETUP_INITIAL_Y = '80px';
   var SETUP_DIALOG_SELECTOR = '.setup';
   var SETUP_DIALOG_HIDDEN_CLASS = 'hidden';
   var SETUP_CLOSE_ELEMENT_SELECTOR = '.setup-close';
