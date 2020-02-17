@@ -8,6 +8,7 @@
 
   // selectors for dialog
   var SETUP_DIALOG_SELECTOR = '.setup';
+  var SETUP_DIALOG_FORM_SELECTOR = '.setup-wizard-form';
   var SETUP_DIALOG_HIDDEN_CLASS = 'hidden';
   var SETUP_CLOSE_ELEMENT_SELECTOR = '.setup-close';
   var SETUP_UPLOAD_ELEMENT_SELECTOR = '.upload';
@@ -41,6 +42,14 @@
     setupDialogElement.classList.add(SETUP_DIALOG_HIDDEN_CLASS);
     removeCloseSetupDialogEventListeners();
     removeChangeColorEventListeners();
+    removeFormSubmitEventListeners();
+    window.utils.hideError();
+  }
+
+  function onFormSubmit(evt) {
+    var formElement = setupDialogElement.querySelector(SETUP_DIALOG_FORM_SELECTOR);
+    window.backend.save(new FormData(formElement), onPopupCloseClick, window.utils.showError);
+    evt.preventDefault();
   }
 
   function onPopupEscapePress(evt) {
@@ -78,6 +87,16 @@
     document.querySelector(WIZARD_FIREBALL_COLOR_ELEMENT_SELECTOR).addEventListener('click', onWizardFireballClick);
   }
 
+  function addFormSubmitEventListeners() {
+    var formElement = setupDialogElement.querySelector(SETUP_DIALOG_FORM_SELECTOR);
+    formElement.addEventListener('submit', onFormSubmit);
+  }
+
+  function removeFormSubmitEventListeners() {
+    var formElement = setupDialogElement.querySelector(SETUP_DIALOG_FORM_SELECTOR);
+    formElement.removeEventListener('submit', onFormSubmit);
+  }
+
   function removeChangeColorEventListeners() {
     document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).removeEventListener('click', onWizardCoatClick);
     document.querySelector(WIZARD_SETUP_WRAP_ELEMENT_SELECTOR).removeEventListener('click', onWizardEyesClick);
@@ -101,6 +120,7 @@
     document.querySelector(WIZARD_SIMILAR_REGION_SELECTOR).classList.remove(WIZARD_SIMILAR_REGION_HIDDEN_CLASS);
     addCloseSetupDialogEventListeners();
     addChangeColorEventListeners();
+    addFormSubmitEventListeners();
     setupDialogElement.style = '';
     setupDialogElement.classList.remove(SETUP_DIALOG_HIDDEN_CLASS);
     window.draggable.makeDraggable(setupDialogElement.querySelector(SETUP_UPLOAD_ELEMENT_SELECTOR), setupDialogElement);
